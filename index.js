@@ -38,6 +38,8 @@ for (const file of eventFiles) {
   const filePath = path.join(eventsPath, file);
   const event = require(filePath);
 
+  console.log(`[debug] loading event file: ${file} -> name: ${event.name}, once: ${!!event.once}`);
+
   if (event.once) {
     client.once(event.name, (...args) => event.execute(...args));
   } else {

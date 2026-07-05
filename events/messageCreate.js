@@ -34,7 +34,9 @@ module.exports = {
       expectedChannel: keywordWatcher.channelId,
       author: message.author.tag,
       isBot: message.author.bot,
+      webhookId: message.webhookId,
       content: message.content,
+      embeds: message.embeds.map(e => ({ title: e.title, description: e.description, fields: e.fields })),
     });
 
     const {
