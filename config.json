@@ -1,11 +1,12 @@
 {
   "keywordWatcher": {
     "channelId": "1094815390040854629",
-    "keywords": ["example", "urgent", "help"],
+    "keywords": ["free", "needoh", "nfl", "jerseys", "jersey", "squishy"],
     "matchWholeWordOnly": true,
     "caseSensitive": false,
     "pingTarget": "role",
     "roleId": "1523399465359380530",
-    "cooldownSeconds": 30
+    "cooldownSeconds": 30,
+    "allowedWebhookIds": ["1519312104748744724"]
   }
 }
