@@ -28,6 +28,15 @@ module.exports = {
     const { keywordWatcher } = config;
     if (!keywordWatcher) return;
 
+    // TEMP DEBUG — remove once things are working
+    console.log('[debug] message received:', {
+      channel: message.channel.id,
+      expectedChannel: keywordWatcher.channelId,
+      author: message.author.tag,
+      isBot: message.author.bot,
+      content: message.content,
+    });
+
     const {
       channelId,
       keywords,
