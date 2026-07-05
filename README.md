@@ -80,6 +80,37 @@ Then re-run `npm run deploy` so Discord knows about it.
 
 Create a new file in `events/`, following the pattern in `ready.js` or `interactionCreate.js`. It's picked up automatically — no manual registration needed.
 
+## Keyword watcher
+
+The bot watches one assigned channel for keywords and pings a role (or `@everyone`) when one is found. Configure it in `config.json`:
+
+```json
+{
+  "keywordWatcher": {
+    "channelId": "PUT_CHANNEL_ID_HERE",
+    "keywords": ["example", "urgent", "help"],
+    "matchWholeWordOnly": true,
+    "caseSensitive": false,
+    "pingTarget": "role",
+    "roleId": "PUT_ROLE_ID_HERE",
+    "cooldownSeconds": 30
+  }
+}
+```
+
+- **`channelId`** — the only channel that gets scanned. Right-click the channel → Copy Channel ID (Developer Mode must be on).
+- **`keywords`** — list of words/phrases to watch for.
+- **`matchWholeWordOnly`** — `true` avoids matching inside other words (e.g. "cat" won't match "category"). Set `false` for substring matching.
+- **`caseSensitive`** — `false` (default) ignores letter case.
+- **`pingTarget`** — `"role"` to ping a specific role, or `"everyone"` to ping `@everyone`.
+- **`roleId`** — required if `pingTarget` is `"role"`. Right-click the role in Server Settings → Roles, or enable Developer Mode and copy the ID from the role's context menu.
+- **`cooldownSeconds`** — minimum time between pings, so a burst of keyword-matching messages doesn't spam the channel. Resets on bot restart.
+
+**Important — enable the Message Content intent:**
+Reading message text requires a privileged intent. In the [Developer Portal](https://discord.com/developers/applications) → your app → **Bot**, scroll to **Privileged Gateway Intents** and enable **Message Content Intent**. Without this, `message.content` will always be empty and keywords will never match.
+
+Also make sure the bot has **View Channel** and **Send Messages** permissions in the assigned channel, and — if pinging a specific role — that the role is **mentionable**, or that the bot has **Mention @everyone, @here, and All Roles** permission.
+
 ## Notes
 
 - Guild commands (scoped to `GUILD_ID`) update instantly — best for development.

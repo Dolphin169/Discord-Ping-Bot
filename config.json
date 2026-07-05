@@ -1,0 +1,11 @@
+{
+  "keywordWatcher": {
+    "channelId": "1094815390040854629",
+    "keywords": ["example", "urgent", "help"],
+    "matchWholeWordOnly": true,
+    "caseSensitive": false,
+    "pingTarget": "role",
+    "roleId": "1523399465359380530",
+    "cooldownSeconds": 30
+  }
+}

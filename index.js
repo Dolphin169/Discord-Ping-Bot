@@ -3,8 +3,16 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
 
-// Add more intents here as your bot needs more info (e.g. GuildMembers, MessageContent)
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+// GuildMessages + MessageContent are required to read message text for keyword scanning.
+// MessageContent is a "privileged" intent — you must also enable it in the
+// Discord Developer Portal under Bot > Privileged Gateway Intents.
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+  ],
+});
 
 // ---- Load commands ----
 client.commands = new Collection();
